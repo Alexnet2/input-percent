@@ -12,14 +12,9 @@ export class AppComponent implements OnInit {
   });
 
   constructor(private formBuilder: FormBuilder) {}
-  ngOnInit(): void {
-    (
-      this.percentForm.get('percent') || ({} as FormControl)
-    ).valueChanges.subscribe((value) => {
-      const percent = Number(String(value).replace('%', '')) / 100;
-      (this.percentForm.get('percent') || ({} as FormControl)).setValue(value, {
-        emitEvent: false,
-      });
-    });
+  ngOnInit(): void {}
+
+  save() {
+    console.log('EStou aqui: ', this.percentForm.value);
   }
 }

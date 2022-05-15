@@ -1,3 +1,6 @@
-<div [formGroup]="percentForm">
-  <input type="text" list="percents" formControlName="percent" />
-</div>
+<input
+  type="text"
+  list="percents"
+  [formControl]="formControlCustom"
+  [placeholder]="placeholder"
+/>

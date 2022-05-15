@@ -1,6 +1,6 @@
 import { PercentPipe } from '@angular/common';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'input-percent',
@@ -8,6 +8,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class InputPercentComponent implements OnInit {
   @Input() numberOfDecimalPlaces: number = 2;
+  @Input() placeholder = '0,00%';
+  @Input() formControlCustom: FormControl = new FormControl();
+
   digitsInfo: string = `1.${this.numberOfDecimalPlaces}-${this.numberOfDecimalPlaces}`;
   value: number = 0;
   textValue: string = '';
@@ -45,16 +48,18 @@ export class InputPercentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.percentForm.get('percent')?.valueChanges.subscribe((value) => {
+    this.formControlCustom.valueChanges.subscribe((value) => {
       if (this.textValue == '' && value != null) {
         this.value =
           Number(String(value).replace('%', '').replace(',', '.')) / 100;
       }
-      this.percentForm
-        .get('percent')
-        ?.setValue(this.percentPipe.transform(this.value, this.digitsInfo), {
+
+      this.formControlCustom.setValue(
+        this.percentPipe.transform(this.value, this.digitsInfo),
+        {
           emitEvent: false,
-        });
+        }
+      );
     });
   }
 }
