@@ -1,7 +1,5 @@
 <div [formGroup]="percentForm">
-  <input-percent
-    [formControlCustom]="percentForm.get('percent')"
-  ></input-percent>
+  <input-percent [formControlCustom]="percentControl"></input-percent>
 
   <button (click)="save()">ok</button>
 </div>
