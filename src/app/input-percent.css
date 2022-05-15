@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+:host:focus .input {
+  border-bottom: 2px double red;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0px;
+  display: flex;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.cursor{
+  width: 1px;
+  background-color: #000;
+  height: 100%;
+}
